@@ -18,13 +18,15 @@
       </dt>
       <dd>
         <%= @the_department.name %>
+        
       </dd>
 
       <dt>
         Number of courses
       </dt>
       <dd>
-        <%= Course.where({ :department_id => @the_department.id }).count %> 
+        <%= Course.where({ :department_id => @the_department.id }).count %>
+      
       </dd>
 
     </dl>
@@ -34,11 +36,14 @@
 <hr>
 
 <h2>Courses</h2>
-<% courses = Course.where({ :department_id => @the_department.id }) %>
 <ul>
-  <% courses.each do |course| %>
+<% department = Course.where({:department_id => @the_department.id }) %>
+  <%  department.each do |course| %>
     <li>
-      <a href="/courses/<%= course.id %>"><%= course.title %></a>
+      <% the_course = Course.where({ :id => course.id }).at(0) %>
+      <a href="/courses/<%= the_course.id %>">
+      <%= the_course.title %></a>
     </li>
-  <% end %>
-</ul>
+ 
+<ul>
+<%end%>

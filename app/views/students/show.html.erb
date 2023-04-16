@@ -50,11 +50,12 @@
 <h3>Course Load</h3>
 <ul>
   <% enrollments = Enrollment.where({:student_id => @the_student.id }) %>
-  <% enrollments.each do |enrollment| %>
+  <% enrollments.each do |course| %>
+
     <li>
-      <% course = Course.where({ :id => enrollment.course_id }).at(0) %>
-      <a href="/courses/<%= course.id %>">
-        <%= course.title %>
+      <% the_course = Course.where({ :id => course.course_id }).at(0) %>
+      <a href="/courses/<%= the_course.id %>">
+        <%= the_course.title %>
       </a>
     </li>
   <% end %>
